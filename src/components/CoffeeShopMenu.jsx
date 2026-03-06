@@ -35,24 +35,24 @@ function CoffeeShopMenu() {
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
       {/* Header - use variables */}
-      <h1>Welcome to ___!</h1>
-      <p style={{ fontStyle: "italic" }}>___ </p>
+      <h1>Welcome to {shopName}!</h1>
+      <p style={{ fontStyle: "italic" }}>{tagline} </p>
       
       {/* Hours - use template literals */}
-      <p>⏰ Hours: ___ to ___</p>
+      <p>⏰ Hours: {openingTime} to {closingTime}</p>
       
       {/* Today's Special - use calculations */}
       <div style={{ backgroundColor: "#fff3cd", padding: "15px", margin: "20px 0", borderRadius: "5px" }}>
         <h2>☕ Today's Special</h2>
-        <p>___ </p>
+        <p>{specialDrink} </p>
         <p>
-          Regular: $___
+          Regular: ${regularPrice}
           <span style={{ color: "red", marginLeft: "10px" }}>
-            Save ___% 
+            Save {discountPercent}% 
           </span>
         </p>
         <p style={{ fontSize: "24px", fontWeight: "bold" }}>
-          Special Price: $___
+          Special Price: ${(regularPrice - (regularPrice*discountPercent/100)).toFixed(2)}
         </p>
       </div>
       
@@ -60,20 +60,20 @@ function CoffeeShopMenu() {
       <h2>📋 Menu</h2>
       
       <div style={{ border: "1px solid #ddd", padding: "10px", margin: "10px 0" }}>
-        <h3>___ (___)</h3>
-        <p>Price: $___</p>
+        <h3>{coffee.name} ({coffee.size})</h3>
+        <p>Price: ${coffee.price}</p>
       </div>
       
       <div style={{ border: "1px solid #ddd", padding: "10px", margin: "10px 0" }}>
-        <h3>___ </h3>
-        <p>Price: $___</p>
+        <h3>{pastry.name} </h3>
+        <p>Price: ${pastry.size}</p>
         <p style={{ fontSize: "12px", color: "gray" }}>___ calories</p>
       </div>
       
       {/* Staff - use string methods */}
       <div style={{ marginTop: "30px", padding: "10px", backgroundColor: "#e7f3ff" }}>
-        <p>👤 Your barista today: ___ (___)</p>
-        <p>Say hi to ___! </p>
+        <p>👤 Your barista today: {barista} ({role})</p>
+        <p>Say hi to {barista}! </p>
       </div>
     </div>
   );

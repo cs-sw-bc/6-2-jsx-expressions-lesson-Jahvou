@@ -106,7 +106,7 @@ function FullMenuBoard() {
       
       {/* 1. Display total number of items using .length */}
       <p style={{ fontSize: "18px", color: "#666" }}>
-        We have ___ items on our menu
+        We have {menuItems.length} items on our menu
       </p>
 
       {/* ALL MENU ITEMS */}
@@ -120,6 +120,15 @@ function FullMenuBoard() {
         {/* 2. Map through menuItems and render MenuItem component */}
         {/* Hint: <MenuItem key={item.id} name={item.name} price={item.price} ... /> */}
         
+        {menuItems.map((item)=>(
+        <MenuItem name={item.name}
+          price={item.price}
+          category={item.category}
+          image={item.image}
+          popular={item.popular}
+        ></MenuItem>
+        ))
+        }
       </div>
 
       {/* COFFEE ONLY */}
@@ -131,7 +140,15 @@ function FullMenuBoard() {
         marginBottom: "40px" 
       }}>
         {/* 3. Filter for category === "Coffee", then map with MenuItem component */}
-        
+        {menuItems.filter((item)=> item.category === "Coffee").map((item)=>(
+        <MenuItem name={item.name}
+          price={item.price}
+          category={item.category}
+          image={item.image}
+          popular={item.popular}
+        ></MenuItem>
+        ))
+        }
       </div>
 
       {/* POPULAR ITEMS */}
@@ -143,7 +160,15 @@ function FullMenuBoard() {
         marginBottom: "40px" 
       }}>
         {/* 4. Filter for popular === true, then map with MenuItem component */}
-        
+        {menuItems.filter((item)=> item.popular ).map((item)=>(
+        <MenuItem name={item.name}
+          price={item.price}
+          category={item.category}
+          image={item.image}
+          popular={item.popular}
+        ></MenuItem>
+        ))
+        }
       </div>
 
       {/* CUSTOMER REVIEWS */}
@@ -151,6 +176,24 @@ function FullMenuBoard() {
       <div>
         {/* 6. Map through reviews */}
         {/* Show: customer name, stars (use "⭐".repeat(rating)), comment */}
+        
+       <h2>⭐ Reviews</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", 
+        gap: "20px",
+        marginBottom: "40px" 
+      }}>
+        {/* 4. Reviews */}
+        {reviews.map((review)=>(
+          <article>
+        <b>{review.customer}</b>
+        <span>{"⭐".repeat(review.rating)}</span>
+        </article>
+        ))
+        }
+      </div>
+        
         
       </div>
     </div>

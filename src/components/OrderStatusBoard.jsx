@@ -10,7 +10,7 @@ function OrderStatusBoard() {
     size: "Large",
     isReady: false,
     isPriority: true,
-    temperature: "iced"
+    temperature: "Iced"
   };
   
   // Shop status
@@ -33,18 +33,19 @@ function OrderStatusBoard() {
       <div style={{ 
         padding: "15px", 
         marginBottom: "20px",
-        backgroundColor: "gray", /* TODO */
+        backgroundColor: isOpen ? "green":"red", 
         color: "white",
         borderRadius: "5px"
       }}>
         <h2>☕ Bean & Brew</h2>
         {/* 2. Show "OPEN" or "CLOSED" using ternary */}
         <p style={{ fontSize: "18px", fontWeight: "bold" }}>
-          Status: {/* TODO */}
+          Status: { isOpen ? "OPEN":"CLOSED" }
         </p>
       </div>
       
       {/* Order card */}
+     {isOpen && 
       <div style={{ 
         border: "2px solid #ddd", 
         padding: "15px", 
@@ -53,7 +54,7 @@ function OrderStatusBoard() {
       }}>
         
         {/* 3. Priority badge - Only show if isPriority is true - Use && */}
-        {/* TODO: Add condition here */}
+        {currentOrder.isPriority && 
         <span style={{ 
           backgroundColor: "red", 
           color: "white", 
@@ -66,6 +67,7 @@ function OrderStatusBoard() {
         }}>
           ⚡ PRIORITY ORDER
         </span>
+        }
         
         {/* 4. Display order number */}
         <h4>Order #{/* TODO */}</h4>
@@ -76,27 +78,36 @@ function OrderStatusBoard() {
         {/* 5. Size - Use ternary to convert to Starbucks names */}
         {/* Small = "Tall", Medium = "Grande", Large = "Venti" */}
         <p>
-          <strong>Size:</strong> {/* TODO */}
+          <strong>Size:
+            {currentOrder.size == "Small"? "Tall": currentOrder.size=="Medium" ? "Grande":"Venti"}
+
+            </strong> {/* TODO */}
         </p>
         
         {/* 6. Temperature - Use ternary ("Iced" or "Hot") */}
         <p>
-          <strong>Temp:</strong> {/* TODO */}
+          <strong>Temp:
+            {currentOrder.temperature == "Iced"? "Iced":currentOrder.temperature == "Hot" ? "Hot":"Iced"}
+            
+            </strong> {/* TODO */}
         </p>
         
         {/* 7. Status background - Use ternary (light green if ready, light yellow if not) */}
         <div style={{
           marginTop: "10px",
           padding: "10px",
-          backgroundColor: "#fff", /* TODO */
+          backgroundColor: currentOrder.isReady ? "lightgreen" : "lightyellow", /* TODO */
           borderRadius: "5px"
         }}>
-          <strong>Status:</strong> {currentOrder.isReady ? "✅ Ready for pickup!" : "⏳ Being prepared..."}
+          <strong>Status:
+            </strong> {currentOrder.isReady ? "✅ Ready for pickup!" : "⏳ Being prepared..."}
         </div>
       </div>
+      }
       
       {/* 8. Wait time warning - Only show if busy - Use && */}
       {/* TODO: Add condition here */}
+      {isBusy &&
       <div style={{ 
         backgroundColor: "#fff3cd", 
         padding: "10px", 
@@ -105,13 +116,17 @@ function OrderStatusBoard() {
       }}>
         ⚠️ We're busy! Estimated wait: 12 minutes
       </div>
+      }
       
       {/* Inventory */}
       <h3>📦 Inventory Status</h3>
       <div style={{ marginBottom: "20px" }}>
         {/* 9. Milk status - Use ternary for color and text */}
         <p>
-          🥛 Milk: {/* TODO: Show "✅ Available" (green) or "❌ Out of Stock" (red) */}
+          🥛 Milk: <span style={{color: milkAvailable ? "green":"red"}}>
+          {milkAvailable ? "✅ Available" :"❌ Out of Stock"}
+          </span>
+          {/* TODO: Show "✅ Available" (green) or "❌ Out of Stock" (red) */}
         </p>
         
         <p>
